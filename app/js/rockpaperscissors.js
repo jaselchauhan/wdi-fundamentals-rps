@@ -23,7 +23,7 @@ function randomPlay() {
 
 function getPlayerMove(move) {
 
-    var move
+    var move;
 
         if (move!= null) {
             move = move;
@@ -39,7 +39,7 @@ function getPlayerMove(move) {
 
 function getComputerMove(move) {
 
-    var move
+    var move;
 
         if (move!= null) {
             move = move;
