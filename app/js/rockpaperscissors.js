@@ -21,83 +21,127 @@ function randomPlay() {
 /*           Write Your Code Below            */
 ////////////////////////////////////////////////
 
+// create my global variables here. These will initially be undefined. Have chosen to create as global so they are accessible to more than one function.
+var winner;
+var playerMove;
+var computerMove;
+
+
 function getPlayerMove(move) {
 
-    var move;
-
-        if (move!= null) {
-            move = move;
-        } else {
-            move = getInput();
-        }
-
     // Write an expression that operates on a variable called `move`
-    // If a `move` has a value, your expression should evaluate to that value.
+    // If a `move` has a value (i.e is not null), your expression should evaluate to that value.
     // However, if `move` is not specified / is null, your expression should equal `getInput()`.
-    return move;
+
+    if (move!=null) {
+        return move;
+    } else {
+        return getInput();
+    }
 }
 
 function getComputerMove(move) {
 
-    var move;
-
-        if (move!= null) {
-            move = move;
-        } else {
-            move = randomPlay();
-        }
-
     // Write an expression that operates on a variable called `move`
-    // If a `move` has a value, your expression should evaluate to that value.
+    // If a `move` has a value (i.e is not null), your expression should evaluate to that value.
     // However, if `move` is not specified / is null, your expression should equal `randomPlay()`.
-    return move;
+
+    if(move!=null){
+        return move;
+    } else {
+        return randomPlay();
+    }
 }
 
 function getWinner(playerMove,computerMove) {
-    var winner;
+
     // Write code that will set winner to either 'player', 'computer', or 'tie' based on the values of playerMove and computerMove.
     // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
     // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
-    /* YOUR CODE HERE */
+
+    //the results of the getPlayerMove and getComputerMove functions will be used as the parameters for the getWinner function
+    playerMove = getPlayerMove();
+    computerMove = getComputerMove();
+
 
     if (playerMove == computerMove) {
         winner = "tie";
-        console.log("It's a draw!");
     } else if (playerMove=="rock") {
         if (computerMove == "scissors") {
             winner = "player";
-            console.log("player wins!");
         } else {
             winner = "computer";
-            console.log("computer wins!");
         }
     } else if (playerMove=="paper") {
         if (computerMove == "rock") {
             winner = "player";
-            console.log("player wins!");
         } else {
             winner = "computer";
-            console.log("computer wins!");
         }
     } else if (playerMove=="scissors") {
         if (computerMove=="rock") {
             winner = "computer";
-            console.log("computer wins!");
         } else {
             winner = "player";
-            console.log("player wins!");
         }
     }
 
     return winner;
 }
 
+
 function playToFive() {
+
     console.log("Let's play Rock, Paper, Scissors");
     var playerWins = 0;
     var computerWins = 0;
-    // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
-    /* YOUR CODE HERE */
+
+    //while playerWins and computerWins are less than 5, increment them based on results of getWinner function.
+    //input for player and computer moves are initially from functions getPlayerMove and getComputerMove. Use these as parameters for getWinner function to determine who has won.
+    //therefore assign the getPlayerMove and getComputerMove functions to the global variables playerMove and computerMove.
+    //increment either playerWins or computerWins. 
+    //while playerwins and comupterwins are both not over 5, continue to wait for another game and then incremement relevant counter.
+    //when the counter for either player or computer reaches 5, declare the winner and reset the counters for both.
+
+    // test who has won using getWinner(playerMove, computerMove)
+
+    playerMove = getPlayerMove();
+    computerMove = getComputerMove();
+
+    while (playerWins < 5 && computerWins < 5) {
+
+        if (getWinner(playerMove,computerMove) == "player") {
+
+            console.log("player wins!");
+            playerWins ++;
+
+        } else if (getWinner(playerMove,computerMove) == "computer") {
+
+            console.log("computer wins!");
+            computerWins ++;
+
+        } else {
+
+            console.log("the result was a tie, please play another round");
+        }
+    }
+
+    if (playerWins == 5){
+
+        console.log("Congratulations, you have won the game!");
+        playerWins = 0;
+        computerWins = 0;
+
+    }    else {
+
+        console.log("Unlucky, the computer has won this game, please try again!");
+        playerWins = 0;
+        computerWins = 0;
+
+    }
+
+    }
+
     return [playerWins, computerWins];
 }
 
