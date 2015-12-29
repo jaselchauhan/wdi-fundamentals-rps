@@ -103,7 +103,7 @@ function playToFive() {
     //while playerwins and comupterwins are both not over 5, continue to wait for another game and then incremement relevant counter.
     //when the counter for either player or computer reaches 5, declare the winner and reset the counters for both.
 
-    // test who has won using getWinner(playerMove, computerMove)
+    // identify who has won using result of getWinner(playerMove, computerMove) function.
 
     playerMove = getPlayerMove();
     computerMove = getComputerMove();
@@ -112,17 +112,17 @@ function playToFive() {
 
         if (getWinner(playerMove,computerMove) == "player") {
 
-            console.log("player wins!");
+            console.log(playerMove + " beats " + computerMove + ". Player wins!");
             playerWins ++;
 
         } else if (getWinner(playerMove,computerMove) == "computer") {
 
-            console.log("computer wins!");
+            console.log(computerMove + " beats " + playerMove + ". Computer wins!");
             computerWins ++;
 
         } else {
 
-            console.log("the result was a tie, please play another round");
+            console.log("The result was a tie, please play another round!");
         }
     }
 
@@ -132,16 +132,63 @@ function playToFive() {
         playerWins = 0;
         computerWins = 0;
 
-    }    else {
+    }   else {
 
         console.log("Unlucky, the computer has won this game, please try again!");
         playerWins = 0;
         computerWins = 0;
 
-    }
+        }
 
-    }
-
-    return [playerWins, computerWins];
 }
+
+function playToX(){
+
+    console.log("Let's play Rock, Paper, Scissors");
+    var playerWins = 0;
+    var computerWins = 0;
+    
+    // create a local variable which asks users how many games to play to.
+    var NumberOfGames= prompt("Please enter the number of games to play:");
+
+    console.log("Awesome! We are now playing to " + NumberOfGames + " games, enjoy!");
+
+
+    playerMove = getPlayerMove();
+    computerMove = getComputerMove();
+
+    while (playerWins < NumberOfGames && computerWins < NumberOfGames) {
+
+        if (getWinner(playerMove,computerMove) == "player") {
+
+            console.log(playerMove + " beats " + computerMove + ". Player wins!");
+            playerWins ++;
+
+        } else if (getWinner(playerMove,computerMove) == "computer") {
+
+            console.log(computerMove + " beats " + playerMove + ". Computer wins!");
+            computerWins ++;
+
+        } else {
+
+            console.log("The result was a tie, please play another round!");
+        }
+    }
+
+    if (playerWins == NumberOfGames){
+
+        console.log("Congratulations, you have won the game!");
+        playerWins = 0;
+        computerWins = 0;
+
+    }   else {
+
+        console.log("Unlucky, the computer has won this game, please try again!");
+        playerWins = 0;
+        computerWins = 0;
+
+        }
+
+}
+
 
